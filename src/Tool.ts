@@ -99,10 +99,10 @@ export class Tool {
   private isBetterMiningTool (block: Block, itemList: Array<Item | undefined>): boolean {
     const item = this.itemInHand()
 
-      // If no item is held in hand, it is assumed that anything in the itemList is better.
+    // If no item is held in hand, it is assumed that anything in the itemList is better.
     if (item == null) return true
 
-      // If item held in hand is not in the "allowed" itemList, anything in the itemList is better.
+    // If item held in hand is not in the "allowed" itemList, anything in the itemList is better.
     if (!itemList.includes(item)) return true
 
     return this.getDigTime(block, itemList[0]) < this.getDigTime(block, item)
@@ -127,7 +127,7 @@ export class Tool {
     }
 
     itemList.sort((a, b) => this.getDigTime(block, a) - this.getDigTime(block, b))
-    console.debug(itemList.map(item => `${item?.displayName} (${this.getDigTime(block, item)})`).join(', '))
+    console.debug(itemList.map(item => `${item?.displayName ? item.displayName : null} (${this.getDigTime(block, item)})`).join(', '))
 
     if (itemList.length === 0) {
       if (options.getFromChest != null && options.getFromChest) {
