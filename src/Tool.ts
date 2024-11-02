@@ -127,6 +127,7 @@ export class Tool {
     }
 
     itemList.sort((a, b) => this.getDigTime(block, a) - this.getDigTime(block, b))
+    console.debug(itemList.map(item => `${item?.displayName} (${this.getDigTime(block, item)})`).join(', '))
 
     if (itemList.length === 0) {
       if (options.getFromChest != null && options.getFromChest) {
